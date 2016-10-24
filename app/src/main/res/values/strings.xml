@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">TimedQuizApp</string>
+    <string name="app_name">Timed Quiz</string>
+    <string name="QM">Quiz Manager</string>
+    <string name="QT">Quiz Taker</string>
 </resources>

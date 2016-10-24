@@ -8,10 +8,67 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.chloe.timedquizapp.MainActivity">
+    tools:context="com.example.chloe.timedquizapp.MainActivity"
+    android:layout_centerHorizontal="true">
+
 
     <TextView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/app_name"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+
+    <LinearLayout
+        android:id="@+id/Role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight = ".6"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/logo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <Button
+            android:id="@+id/btnQM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/QM"/>
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="1dp"/>
+
+        <Button
+            android:id="@+id/btnQT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/QT"/>
+    </LinearLayout>
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_below="@+id/Role">-->
+
+        <!--<EditText android:id="@+id/input_email"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:hint="Email"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_centerHorizontal="true"/>-->
+
+    <!--</LinearLayout>-->
+
+
+
+
 </RelativeLayout>
