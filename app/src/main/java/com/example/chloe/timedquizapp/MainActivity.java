@@ -25,15 +25,22 @@ public class MainActivity extends Activity implements OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnQM){
-            Intent homeQM = new Intent(this, QMHome.class);
-            startActivity(homeQM);
-        }
-        else if (v.getId() == R.id.btnQT){
-            Intent loginQT = new Intent(this, QTLogin.class);
-            startActivity(loginQT);
-        }
-        else{
+            try
+            {
+                Intent homeQM = new Intent(MainActivity.this, QMHome.class);
+                startActivity(homeQM);
+            }catch(Exception e){
 
+            }
+        }
+        if (v.getId() == R.id.btnQT){
+            try
+            {
+                Intent loginQT = new Intent(MainActivity.this, QTLogin.class);
+                startActivity(loginQT);
+            }catch(Exception e){
+
+            }
         }
     }
 }

@@ -15,6 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".QTLogin"
+            android:label="@string/QT"
+            />
+        <!--<activity-->
+            <!--android:name=".QMHome"-->
+            <!--android:label="@string/QM"-->
+            <!--/>-->
     </application>
 
 </manifest>

@@ -118,7 +118,7 @@ public class DB extends SQLiteOpenHelper{
     // get data from tables
     public Cursor getQTData(String qt_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from QT_TABLE_NAME where QT_ID = "+qt_id+"", null );
+        Cursor res =  db.rawQuery( "select password from QT_TABLE_NAME where QT_ID = "+qt_id+"", null );
         return res;
     }
 

@@ -2,4 +2,5 @@
     <string name="app_name">Timed Quiz</string>
     <string name="QM">Quiz Manager</string>
     <string name="QT">Quiz Taker</string>
+    <string name="Login">Login</string>
 </resources>

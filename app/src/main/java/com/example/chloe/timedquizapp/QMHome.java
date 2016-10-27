@@ -5,4 +5,5 @@ package com.example.chloe.timedquizapp;
  */
 
 public class QMHome {
+
 }
