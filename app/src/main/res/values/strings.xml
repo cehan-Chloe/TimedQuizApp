@@ -3,4 +3,8 @@
     <string name="QM">Quiz Manager</string>
     <string name="QT">Quiz Taker</string>
     <string name="Login">Login</string>
+    <string name="first_function_QM">enter quiz</string>
+    <string name="second_function_QM">enter QT data</string>
+    <string name="third_function_QM">check QT records</string>
+    <string name="home_QM">choose the function below</string>
 </resources>
