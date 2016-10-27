@@ -15,6 +15,7 @@ import android.widget.EditText;
 public class QTLogin extends Activity implements View.OnClickListener {
     EditText inputID;
     EditText inputPassword;
+    DB dbHelper;
     DB db;
 
     @Override
@@ -23,7 +24,6 @@ public class QTLogin extends Activity implements View.OnClickListener {
         setContentView(R.layout.login_qt);
 
         db = new DB(this);
-        db.getWritableDatabase();
 
         inputID = (EditText) findViewById(R.id.id);
         inputID.setOnClickListener(this);
@@ -46,6 +46,8 @@ public class QTLogin extends Activity implements View.OnClickListener {
         // fetch the Password form database for respective user name
         Cursor cursor=db.getQTData(userID);
         String storedPassword= cursor.getString(cursor.getColumnIndex("PASSWORD"));
-        
+        if (storedPassword == password){
+            // go to the next activity
+        }
     }
 }

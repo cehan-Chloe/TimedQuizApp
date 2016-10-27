@@ -118,19 +118,19 @@ public class DB extends SQLiteOpenHelper{
     // get data from tables
     public Cursor getQTData(String qt_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select password from QT_TABLE_NAME where QT_ID = "+qt_id+"", null );
+        Cursor res =  db.rawQuery("select password from QT_TABLE_NAME where QT_ID = "+qt_id+"", null);
         return res;
     }
 
     public Cursor getQuestionData(String q_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from QUESTION_TABLE_NAME where QUESTION_ID = "+q_id+"", null );
+        Cursor res =  db.rawQuery("select * from QUESTION_TABLE_NAME where QUESTION_ID = "+q_id+"", null);
         return res;
     }
 
     public Cursor getRecordData(String qt_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from RECORD_TABLE_NAME where QT_ID="+qt_id+"", null );
+        Cursor res =  db.rawQuery("select * from RECORD_TABLE_NAME where QT_ID="+qt_id+"", null);
         return res;
     }
 }
