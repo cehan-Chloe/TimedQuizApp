@@ -15,7 +15,6 @@ import android.widget.EditText;
 public class QTLogin extends Activity implements View.OnClickListener {
     EditText inputID;
     EditText inputPassword;
-    DB dbHelper;
     DB db;
 
     @Override

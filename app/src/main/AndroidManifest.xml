@@ -24,6 +24,8 @@
             android:name=".QMHome"
             android:label="@string/QM"
             />
+        <activity android:name=".QTEnter">
+        </activity>
     </application>
 
 </manifest>

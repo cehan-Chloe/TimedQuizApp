@@ -7,4 +7,6 @@
     <string name="second_function_QM">enter QT data</string>
     <string name="third_function_QM">check QT records</string>
     <string name="home_QM">choose the function below</string>
+    <string name="enter_logo">Enter the ID and password of QT</string>
+    <string name="enter">ENTER</string>
 </resources>

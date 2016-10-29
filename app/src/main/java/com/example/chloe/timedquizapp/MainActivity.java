@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements OnClickListener{
                 Intent homeQM = new Intent(MainActivity.this, QMHome.class);
                 startActivity(homeQM);
             }catch(Exception e){
-
+                e.printStackTrace();
             }
         }
         if (v.getId() == R.id.btnQT){
@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements OnClickListener{
                 Intent loginQT = new Intent(MainActivity.this, QTLogin.class);
                 startActivity(loginQT);
             }catch(Exception e){
-
+                e.printStackTrace();
             }
         }
     }

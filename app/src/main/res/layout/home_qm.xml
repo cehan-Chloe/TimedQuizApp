@@ -49,8 +49,8 @@
             android:id="@+id/btnFirst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/first_function_QM"
-            android:onClick="enterQuiz"/>
+            android:text="@string/first_function_QM"/>
+
         <Space
             android:layout_width="30dp"
             android:layout_height="10dp"/>
@@ -59,8 +59,7 @@
             android:id="@+id/btnSecond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/second_function_QM"
-            android:onClick="enterQT"/>
+            android:text="@string/second_function_QM"/>
 
         <Space
             android:layout_width="30dp"
@@ -70,8 +69,8 @@
             android:id="@+id/btnThird"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/third_function_QM"
-            android:onClick="checkQTRecord"/>
+            android:text="@string/third_function_QM"/>
+
     </LinearLayout>
 
 </RelativeLayout>
