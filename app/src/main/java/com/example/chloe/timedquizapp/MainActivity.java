@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener{
         if (v.getId() == R.id.btnQT){
             try
             {
-                Intent loginQT = new Intent(MainActivity.this, QTHome.class);
+                Intent loginQT = new Intent(MainActivity.this, QTLogin.class);
                 startActivity(loginQT);
             }catch(Exception e){
                 e.printStackTrace();

@@ -47,7 +47,7 @@ public class QTLogin extends Activity implements View.OnClickListener {
         // fetch the Password form database for respective user name
         Cursor cursor=db.getQTData(userID);
         String storedPassword= cursor.getString(cursor.getColumnIndex("PASSWORD"));
-        if (storedPassword == password){
+        if (storedPassword.equals(password)){
             try {
                 Intent quiz = new Intent(QTLogin.this, Quiz.class);
                 startActivity(quiz);
