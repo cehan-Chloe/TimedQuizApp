@@ -36,7 +36,7 @@ public class Quiz extends Activity implements View.OnClickListener{
     // count the question that already take
     int qCount = 0;
     // a hash set to store the questions that have been used
-    HashSet<String> question = new HashSet<>();
+    HashSet<String> questionSet = new HashSet<>();
     // the given time, from db
     int time;
     // score
@@ -143,7 +143,7 @@ public class Quiz extends Activity implements View.OnClickListener{
             alert.setNegativeButton("Stop", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     try {
-                        Intent main = new Intent(Quiz.this, MainActivity.class);
+                        Intent main = new Intent(Quiz.this, QTHome.class);
                         startActivity(main);
                     }catch(Exception e){
                         e.printStackTrace();
