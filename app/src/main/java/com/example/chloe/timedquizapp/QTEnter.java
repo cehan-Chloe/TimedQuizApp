@@ -1,11 +1,15 @@
 package com.example.chloe.timedquizapp;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.os.StatFs;
+import android.widget.Toast;
 
 /**
  * Created by Chloe on 2016-10-27.
@@ -15,6 +19,7 @@ public class QTEnter extends Activity implements View.OnClickListener{
 
     EditText inputID;
     EditText inputPassword;
+    Button buttonEnter;
     DB db;
 
     @Override
@@ -30,6 +35,8 @@ public class QTEnter extends Activity implements View.OnClickListener{
         inputPassword = (EditText) findViewById(R.id.password);
         inputPassword.setOnClickListener(this);
 
+        buttonEnter = (Button) findViewById(R.id.btnEnter);
+        buttonEnter.setOnClickListener(this);
     }
 
     public boolean isFull(){
@@ -43,26 +50,45 @@ public class QTEnter extends Activity implements View.OnClickListener{
         }
         return false;
     }
-
-    public void enter(){
-        String userID = inputID.getText().toString();
-        String password = inputPassword.getText().toString();
-
-        if (!isFull()){
-            if (db.insertQT(userID, password)){
-                // the disk is not full and insertion successed, so popup that you insert a record ID is ..and password is ..
-            }
-            else{
-                // flags an error message: the insertion is not successed
-            }
-        }
-        else{
-            // flags an error message: the disk is full
-        }
-    }
-
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.btnFirst){
+            String userID = inputID.getText().toString();
+            String password = inputPassword.getText().toString();
 
+            if (!isFull()){
+                if (db.insertQT(userID, password)){
+                    // the disk is not full and insertion successed, so popup that you insert a record ID is ..and password is ..
+                    Context context = getApplicationContext();
+                    CharSequence text = "succeed!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    // clear the editview
+                    inputPassword.setText("Enter password");
+                    inputID.setText("Enter ID");
+                }
+                else{
+                    // flags an error message: the insertion is not successed
+                    Context context = getApplicationContext();
+                    CharSequence text = "Wrong! The insertion is not successed";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+            }
+            else{
+                // flags an error message: the disk is full
+                Context context = getApplicationContext();
+                CharSequence text = "Wrong! The disk is full!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        }
     }
 }
