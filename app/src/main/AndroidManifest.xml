@@ -48,10 +48,10 @@
             android:label="@string/QT">
         </activity>
 
-        <!--<activity-->
-            <!--android:name=".Quiz"-->
-            <!--android:label="@string/QT">-->
-        <!--</activity>-->
+        <activity
+            android:name=".Quiz"
+            android:label="@string/QT">
+        </activity>
     </application>
 
 </manifest>
