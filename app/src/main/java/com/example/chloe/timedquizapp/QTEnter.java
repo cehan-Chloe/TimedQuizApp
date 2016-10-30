@@ -52,13 +52,13 @@ public class QTEnter extends Activity implements View.OnClickListener{
     }
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnFirst){
+        if (v.getId() == R.id.btnEnter){
             String userID = inputID.getText().toString();
             String password = inputPassword.getText().toString();
 
             if (!isFull()){
                 if (db.insertQT(userID, password)){
-                    // the disk is not full and insertion successed, so popup that you insert a record ID is ..and password is ..
+                    // the disk is not full and insertion successed, so popup that succeed
                     Context context = getApplicationContext();
                     CharSequence text = "succeed!";
                     int duration = Toast.LENGTH_SHORT;
@@ -67,13 +67,13 @@ public class QTEnter extends Activity implements View.OnClickListener{
                     toast.show();
 
                     // clear the editview
-                    inputPassword.setText("Enter password");
-                    inputID.setText("Enter ID");
+                    inputPassword.setText("");
+                    inputID.setText("");
                 }
                 else{
                     // flags an error message: the insertion is not successed
                     Context context = getApplicationContext();
-                    CharSequence text = "Wrong! The insertion is not successed";
+                    CharSequence text = "Wrong! The insertion is not succeed";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);

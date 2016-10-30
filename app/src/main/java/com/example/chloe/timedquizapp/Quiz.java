@@ -69,28 +69,6 @@ public class Quiz extends Activity implements View.OnClickListener{
         start();
     }
 
-    public void start() {
-        // add qCount
-        qCount ++;
-        getDataFromDB();
-        // record userID in login page, get it and store it
-        QTLogin idGetter = new QTLogin();
-        ID = idGetter.getID();
-        userID.setText(String.valueOf(ID));
-
-        // add a timer
-        new CountDownTimer(time * 1000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                remainedTime.setText("" + millisUntilFinished / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                checkLastQuestion();
-            }
-        }.start();
-    }
 
     public void getDataFromDB() {
         // get the id, description, options, limit time from db  ???? setText() and correct answer
@@ -177,4 +155,33 @@ public class Quiz extends Activity implements View.OnClickListener{
         checkCorrect(correct, currentAns);
         checkLastQuestion();
     }
+
+    public void start() {
+        // add qCount
+        qCount ++;
+
+        getDataFromDB();
+
+        // record userID in login page, get it and store it
+        QTLogin idGetter = new QTLogin();
+        ID = idGetter.getID();
+        userID.setText(String.valueOf(ID));
+
+        // add a timer
+        new CountDownTimer(time * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                remainedTime.setText("" + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                checkLastQuestion();
+            }
+        }.start();
+        pop(correct);
+        checkLastQuestion();
+
+    }
+
 }

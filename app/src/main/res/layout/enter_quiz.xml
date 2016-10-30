@@ -29,7 +29,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/discription"
-        android:hint="Enter discription"
+        android:hint="Enter description"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/id"/>
 
@@ -78,7 +78,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/correctAnswer"
-        android:hint="Enter correctAnswer"
+        android:hint="Enter correct Answer"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/optionD"/>
 

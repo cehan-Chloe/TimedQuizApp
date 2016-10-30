@@ -2,6 +2,7 @@ package com.example.chloe.timedquizapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
@@ -43,25 +44,25 @@ public class DB extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + QT_TABLE_NAME + "(" +
-                QT_ID + " PRIMARY KEY, " +
-                PASSWORD + " TEXT)"
+                QT_ID + " TEXT PRIMARY KEY," +
+                PASSWORD + " TEXT);"
         );
 
         db.execSQL("CREATE TABLE " + QUESTION_TABLE_NAME + "(" +
                 QUESTION_ID + " PRIMARY KEY, " +
-                QUESTION_DESCRIPTION + " TEXT" +
-                QUESTION_TIME + " TEXT" +
-                OPTION_A + " TEXT" +
-                OPTION_B + " TEXT" +
-                OPTION_C + " TEXT" +
-                OPTION_D + " TEXT" +
-                CORRECT_ANSWER + " TEXT)"
+                QUESTION_DESCRIPTION + " TEXT," +
+                QUESTION_TIME + " TEXT," +
+                OPTION_A + " TEXT," +
+                OPTION_B + " TEXT," +
+                OPTION_C + " TEXT," +
+                OPTION_D + " TEXT," +
+                CORRECT_ANSWER + " TEXT);"
         );
 
         db.execSQL("CREATE TABLE " + RECORD_TABLE_NAME + "(" +
                 RECORD_ID + " PRIMARY KEY, " +
-                CORRECT_RATIO + " TEXT" +
-                QT_ID + " TEXT" +
+                CORRECT_RATIO + " TEXT," +
+                QT_ID + " TEXT NOT NULL," +
                 " FOREIGN KEY ("+QT_ID+") REFERENCES "+QT_TABLE_NAME+"("+QT_ID+"));"
         );
     }
@@ -118,19 +119,19 @@ public class DB extends SQLiteOpenHelper{
     // get data from tables
     public Cursor getQTData(String qt_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select password from QT_TABLE_NAME where QT_ID = "+qt_id+"", null);
+        Cursor res =  db.rawQuery("select * from user where qt_id = '"+qt_id+"'", null);
         return res;
     }
 
     public Cursor getQuestionData(String q_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from QUESTION_TABLE_NAME where QUESTION_ID = "+q_id+"", null);
+        Cursor res =  db.rawQuery("select * from question where q_id = "+q_id+"", null);
         return res;
     }
 
     public Cursor getRecordData(String qt_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from RECORD_TABLE_NAME where QT_ID="+qt_id+"", null);
+        Cursor res =  db.rawQuery("select * from record where qt_id="+qt_id+"", null);
         return res;
     }
 }
