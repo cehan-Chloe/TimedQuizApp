@@ -26,7 +26,7 @@ public class QTRecord extends Activity implements View.OnClickListener{
         String userID = inputID.getText().toString();
         if(v.getId() == R.id.btnQuery){
             // fetch the columns form database
-            Cursor cursor=db.getRecordData(userID);
+            Cursor cursor= db.getRecordData(userID);
 //            String storedPassword= cursor.getString(cursor.getColumnIndex("PASSWORD"));
             // ????get the record from QTRecord table?????????
 

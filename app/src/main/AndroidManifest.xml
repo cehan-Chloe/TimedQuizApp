@@ -24,12 +24,18 @@
             android:name=".QMHome"
             android:label="@string/QM"
             />
-        <activity android:name=".QTEnter"
+        <activity
+            android:name=".QTEnter"
             android:label="@string/QM">
         </activity>
-        <activity android:name=".QTRecord"
+        <activity
+            android:name=".QTRecord"
             android:label="@string/QM">
+        </activity>
 
+        <activity
+            android:name=".QuizEnter"
+            android:label="@string/QM">
         </activity>
     </application>
 

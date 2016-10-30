@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/enter_qt"
+    android:orientation="horizontal">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter quiz"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/id"
+        android:hint="Enter quiz id"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/logo" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/discription"
+        android:hint="Enter discription"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/id"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/qTime"
+        android:hint="Enter quiz time"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/discription"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/optionA"
+        android:hint="Enter option A"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/qTime"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/optionB"
+        android:hint="Enter optionB"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/optionA"/>
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/optionC"
+        android:hint="Enter optionC"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/optionB"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/optionD"
+        android:hint="Enter optionD"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/optionC"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/correctAnswer"
+        android:hint="Enter correctAnswer"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/optionD"/>
+
+    <Button
+        android:id="@+id/btnEnter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/correctAnswer"
+        android:layout_centerHorizontal="true"
+        android:text="@string/enter"/>
+
+</RelativeLayout>
