@@ -7,51 +7,41 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Created by Chloe on 2016-10-24.
+ * Created by Chloe on 2016-10-29.
  */
 
-public class QMHome extends Activity implements View.OnClickListener {
+public class QTHome extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_qm);
+        setContentView(R.layout.home_qt);
 
         Button buttonFirst = (Button) findViewById(R.id.btnFirst);
         buttonFirst.setOnClickListener(this);
 
         Button buttonSecond = (Button) findViewById(R.id.btnSecond);
         buttonSecond.setOnClickListener(this);
-
-        Button buttonThird = (Button) findViewById(R.id.btnThird);
-        buttonThird.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnFirst){
             try{
-                Intent quizEnter = new Intent(QMHome.this, QuizEnter.class);
-                startActivity(quizEnter);
+                Intent quiz = new Intent(QTHome.this, Quiz.class);
+                startActivity(quiz);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
         if(v.getId() == R.id.btnSecond){
             try {
-                Intent QTenter = new Intent(QMHome.this, QTEnter.class);
-                startActivity(QTenter);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        if(v.getId() == R.id.btnThird){
-            try {
-                Intent checkRecord = new Intent(QMHome.this, QMRecord.class);
-                startActivity(checkRecord);
+                Intent QTRecordEnter = new Intent(QTHome.this, QTRecord.class);
+                startActivity(QTRecordEnter);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
     }
 }
+

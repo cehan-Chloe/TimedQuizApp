@@ -29,7 +29,7 @@
             android:label="@string/QM">
         </activity>
         <activity
-            android:name=".QTRecord"
+            android:name=".QMRecord"
             android:label="@string/QM">
         </activity>
 
@@ -37,6 +37,21 @@
             android:name=".QuizEnter"
             android:label="@string/QM">
         </activity>
+
+        <activity
+            android:name=".QTHome"
+            android:label="@string/QT">
+        </activity>
+
+        <activity
+            android:name=".QTRecord"
+            android:label="@string/QT">
+        </activity>
+
+        <!--<activity-->
+            <!--android:name=".Quiz"-->
+            <!--android:label="@string/QT">-->
+        <!--</activity>-->
     </application>
 
 </manifest>

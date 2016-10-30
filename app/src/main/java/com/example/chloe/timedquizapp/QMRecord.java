@@ -7,15 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
- * Created by Chloe on 2016-10-28.
+ * Created by Chloe on 2016-10-27.
  */
 
-public class QTRecord extends Activity implements View.OnClickListener{
+public class QMRecord extends Activity implements View.OnClickListener{
 
     EditText inputID;
     Button buttonQuery;
+    Button buttonDelete;
     DB db;
 
     @Override
@@ -29,11 +31,20 @@ public class QTRecord extends Activity implements View.OnClickListener{
             // ????get the record from QMRecord table?????????
 
         }
+        if (v.getId() == R.id.btnDelete){
+            // ???? delete the record ????
+            Context context = getApplicationContext();
+            CharSequence text = "succeed!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.record_query_qt);
+        setContentView(R.layout.record_query_qm);
 
         db = new DB(this);
 
@@ -42,5 +53,8 @@ public class QTRecord extends Activity implements View.OnClickListener{
 
         buttonQuery = (Button) findViewById(R.id.btnQuery);
         buttonQuery.setOnClickListener(this);
+
+        buttonDelete = (Button) findViewById(R.id.btnDelete);
+        buttonDelete.setOnClickListener(this);
     }
 }
