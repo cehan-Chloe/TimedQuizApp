@@ -3,10 +3,12 @@ package com.example.chloe.timedquizapp;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,8 +19,12 @@ public class QMRecord extends Activity implements View.OnClickListener{
 
     EditText inputID;
     Button buttonQuery;
-    Button buttonDelete;
+    TextView quizTimes;
+    TextView coRatio;
     DB db;
+
+    int count;
+    int correctRatio;
 
     @Override
     public void onClick(View v) {
@@ -27,19 +33,18 @@ public class QMRecord extends Activity implements View.OnClickListener{
         if(v.getId() == R.id.btnQuery){
             // fetch the columns form database
             Cursor cursor= db.getRecordData(userID);
-//            String storedPassword= cursor.getString(cursor.getColumnIndex("PASSWORD"));
-            // ????get the record from QMRecord table?????????
+            if (cursor != null && cursor.moveToFirst()) {
+                count = cursor.getColumnCount();
+                quizTimes.setText("Count:" + String.valueOf(count));
+            }
 
+            Cursor cursor2= db.calAverage(userID);
+            if (cursor2 != null && cursor2.moveToFirst()) {
+                correctRatio = Integer.valueOf(cursor2.getString(0));
+                coRatio.setText("Correct Ratio:" + String.valueOf(correctRatio));
+            }
         }
-        if (v.getId() == R.id.btnDelete){
-            // ???? delete the record ????
-            Context context = getApplicationContext();
-            CharSequence text = "succeed!";
-            int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,8 @@ public class QMRecord extends Activity implements View.OnClickListener{
         buttonQuery = (Button) findViewById(R.id.btnQuery);
         buttonQuery.setOnClickListener(this);
 
-        buttonDelete = (Button) findViewById(R.id.btnDelete);
-        buttonDelete.setOnClickListener(this);
+
+        quizTimes = (TextView) findViewById(R.id.quiz_times);
+        coRatio = (TextView) findViewById(R.id.correct_ratio);
     }
 }

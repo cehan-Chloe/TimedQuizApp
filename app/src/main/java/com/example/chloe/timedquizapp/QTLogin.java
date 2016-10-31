@@ -20,7 +20,7 @@ public class QTLogin extends Activity implements View.OnClickListener {
     EditText inputPassword;
     Button buttonLogin;
     DB db;
-    private static String userID;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,6 @@ public class QTLogin extends Activity implements View.OnClickListener {
     }
 
     public String getID(){
-        return String.valueOf(inputID);
+        return String.valueOf(userID);
     }
 }

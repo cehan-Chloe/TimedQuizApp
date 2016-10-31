@@ -23,8 +23,8 @@ public class QMHome extends Activity implements View.OnClickListener {
         Button buttonSecond = (Button) findViewById(R.id.btnSecond);
         buttonSecond.setOnClickListener(this);
 
-        Button buttonThird = (Button) findViewById(R.id.btnThird);
-        buttonThird.setOnClickListener(this);
+//        Button buttonThird = (Button) findViewById(R.id.btnThird);
+//        buttonThird.setOnClickListener(this);
     }
 
     @Override
@@ -45,13 +45,13 @@ public class QMHome extends Activity implements View.OnClickListener {
                 e.printStackTrace();
             }
         }
-        if(v.getId() == R.id.btnThird){
-            try {
-                Intent checkRecord = new Intent(QMHome.this, QMRecord.class);
-                startActivity(checkRecord);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+//        if(v.getId() == R.id.btnThird){
+//            try {
+//                Intent checkRecord = new Intent(QMHome.this, QMRecord.class);
+//                startActivity(checkRecord);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }
     }
 }

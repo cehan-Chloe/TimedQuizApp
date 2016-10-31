@@ -55,11 +55,11 @@
             android:layout_width="30dp"
             android:layout_height="10dp"/>
 
-        <Button
-            android:id="@+id/btnSecond"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Check the record"/>
+        <!--<Button-->
+            <!--android:id="@+id/btnSecond"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Check the record"/>-->
 
     </LinearLayout>
 

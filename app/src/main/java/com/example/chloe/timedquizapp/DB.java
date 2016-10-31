@@ -104,7 +104,7 @@ public class DB extends SQLiteOpenHelper{
         return true;
     }
 
-    public boolean insertRecord(String r_id, String qt_id, String correct_ratio) {
+    public void insertRecord(String r_id, String qt_id, String correct_ratio) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -112,8 +112,7 @@ public class DB extends SQLiteOpenHelper{
         contentValues.put(CORRECT_RATIO, correct_ratio);
         contentValues.put(QT_ID, qt_id);
 
-        db.insert(QT_TABLE_NAME, null, contentValues);
-        return true;
+        db.insert(RECORD_TABLE_NAME, null, contentValues);
     }
 
     // get data from tables
@@ -125,13 +124,26 @@ public class DB extends SQLiteOpenHelper{
 
     public Cursor getQuestionData(String q_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from question where q_id = "+q_id+"", null);
+        Cursor res =  db.rawQuery("select * from question where q_id = '"+q_id+"'", null);
         return res;
     }
 
+    public Cursor getQuestionID(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select q_id from question", null);
+        return res;
+    }
+
+
     public Cursor getRecordData(String qt_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from record where qt_id="+qt_id+"", null);
+        Cursor res =  db.rawQuery("select * from record", null);
+        return res;
+    }
+
+    public Cursor calAverage(String qt_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select avg(correct_ratio) from record", null);
         return res;
     }
 }

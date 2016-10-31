@@ -43,12 +43,42 @@
         android:layout_centerHorizontal="true"
         android:text="QUERY"/>
 
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/result"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="DELETE"/>
+        android:layout_weight = ".6"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/choice"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/quiz_times"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/correct_ratio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
     </LinearLayout>
 
 </RelativeLayout>

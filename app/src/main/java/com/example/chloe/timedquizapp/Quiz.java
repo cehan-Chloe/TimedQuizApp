@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -13,7 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Random;
 
 /**
  * Created by Chloe on 2016-10-29.
@@ -33,9 +37,11 @@ public class Quiz extends Activity implements View.OnClickListener{
     TextView userID;
     TextView s;
 
+    DB db;
+
     // count the question that already take
     int qCount = 0;
-    // a hash set to store the questions that have been used
+    // a hash set to store the questions that have not been used
     HashSet<String> questionSet = new HashSet<>();
     // the given time, from db
     int time;
@@ -45,6 +51,13 @@ public class Quiz extends Activity implements View.OnClickListener{
     String ID;
     // store the correct answer
     String correct;
+    // q_id
+    String q_id = "";
+    // timer
+    CountDownTimer timer;
+    // amout of quiz db
+    int size;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +84,92 @@ public class Quiz extends Activity implements View.OnClickListener{
 
 
     public void getDataFromDB() {
-        // get the id, description, options, limit time from db  ???? setText() and correct answer
-        // the question cannot be repeat, check the hashset if the q_id in there
+        // get the id, description, options/ limit time and correct answer from db setText()
+        // the question cannot be repeat, pick one from the hashset then remove it
 
+
+        // 1. set text qCount
+        questionNum.setText(String.valueOf(qCount));
+
+        // 2. get data from db
+
+        String des;
+        String option_a;
+        String option_b;
+        String option_c;
+        String option_d;
+
+        // add all the q_id into a hashset
+        if (qCount == 1) {
+            db = new DB(this);
+            Cursor getQID = db.getQuestionID();
+            if (getQID != null && getQID.moveToFirst()) {
+                do {
+                    questionSet.add(getQID.getString(0));
+                } while (getQID.moveToNext());
+                getQID.close();
+            }
+        }
+
+        size = questionSet.size();
+        System.out.println("size:" + size);
+
+        // reach the limit of question data, then jump to the home page
+        if(size <= 0){
+            try {
+                Context context = getApplicationContext();
+                CharSequence text = "Congratulations! You have answered all the questions!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                // store record
+                storeRecord();
+
+                Intent main = new Intent(Quiz.this, QTHome.class);
+                startActivity(main);
+
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }
+        }
+        else{
+            int item = new Random().nextInt(size);
+            int i = 0;
+
+            for(String str : questionSet)
+            {
+                if (i == item){
+                    q_id = str;
+                    break;
+                }
+                i = i + 1;
+            }
+
+            Cursor cursor = db.getQuestionData(q_id);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                des = cursor.getString(cursor.getColumnIndex("description"));
+                description.setText(String.valueOf(des));
+
+                time = Integer.valueOf(cursor.getString(cursor.getColumnIndex("q_time")));
+                remainedTime.setText(String.valueOf(time));
+
+                option_a = cursor.getString(cursor.getColumnIndex("option_a"));
+                optA.setText(String.valueOf(option_a));
+                option_b = cursor.getString(cursor.getColumnIndex("option_b"));
+                optB.setText(String.valueOf(option_b));
+                option_c = cursor.getString(cursor.getColumnIndex("option_c"));
+                optC.setText(String.valueOf(option_c));
+                option_d = cursor.getString(cursor.getColumnIndex("option_d"));
+                optD.setText(String.valueOf(option_d));
+
+                correct = cursor.getString(cursor.getColumnIndex("correct_answer"));
+                System.out.println("time: " + time + "\tdes: " + des);
+                cursor.close();
+            }
+        }
     }
 
     public void pop(String correct) {
@@ -103,7 +199,13 @@ public class Quiz extends Activity implements View.OnClickListener{
     }
 
     public void checkLastQuestion() {
+        questionSet.remove(q_id);
+        if (size == 0){
+            return;
+        }
+
         if (qCount % 5 != 0) {
+            timer.cancel();
             start();
         }
         else {
@@ -114,22 +216,43 @@ public class Quiz extends Activity implements View.OnClickListener{
             // if choose "continue", keep the sCount and qCount number and get another around
             alert.setPositiveButton("New round", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
+                    timer.cancel();
                     start();
                 }
             });
-            // if choose "stop", jump to QTHome page
+            // if choose "stop", store record, then jump to QTHome page
             alert.setNegativeButton("Stop", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    try {
-                        Intent main = new Intent(Quiz.this, QTHome.class);
-                        startActivity(main);
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
+                try {
+                    // store record
+
+                    storeRecord();
+                    Intent main = new Intent(Quiz.this, QTHome.class);
+                    startActivity(main);
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
                 }
             });
+
             alert.show();
         }
+    }
+
+    // store the record to record table, the correct ratio
+    public void storeRecord(){
+        Date date = new Date();
+        String r_id = date.toString();
+        double correct_ratio = (double)scoreCount/ (double)qCount;
+        db.insertRecord(r_id, ID, String.valueOf(correct_ratio));
+
+        Context context = getApplicationContext();
+        CharSequence text = "Record saved!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     public void onClick(View v) {
@@ -150,7 +273,6 @@ public class Quiz extends Activity implements View.OnClickListener{
                 currentAns = "D";
                 break;
             default:
-                break;
             }
         checkCorrect(correct, currentAns);
         checkLastQuestion();
@@ -165,23 +287,26 @@ public class Quiz extends Activity implements View.OnClickListener{
         // record userID in login page, get it and store it
         QTLogin idGetter = new QTLogin();
         ID = idGetter.getID();
-        userID.setText(String.valueOf(ID));
+        userID.setText("Score");
+        s.setText(String.valueOf(scoreCount));
+
+        questionNum.setText(String.valueOf(qCount) + ".");
 
         // add a timer
-        new CountDownTimer(time * 1000, 1000) {
+        timer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 remainedTime.setText("" + millisUntilFinished / 1000);
             }
-
             @Override
             public void onFinish() {
+                pop(correct);
                 checkLastQuestion();
+                if (size == 0){
+                    Intent main = new Intent(Quiz.this, QTHome.class);
+                    startActivity(main);
+                }
             }
         }.start();
-        pop(correct);
-        checkLastQuestion();
-
     }
-
 }

@@ -20,8 +20,8 @@ public class QTHome extends Activity implements View.OnClickListener {
         Button buttonFirst = (Button) findViewById(R.id.btnFirst);
         buttonFirst.setOnClickListener(this);
 
-        Button buttonSecond = (Button) findViewById(R.id.btnSecond);
-        buttonSecond.setOnClickListener(this);
+//        Button buttonSecond = (Button) findViewById(R.id.btnSecond);
+//        buttonSecond.setOnClickListener(this);
     }
 
     @Override
@@ -34,14 +34,14 @@ public class QTHome extends Activity implements View.OnClickListener {
                 e.printStackTrace();
             }
         }
-        if(v.getId() == R.id.btnSecond){
-            try {
-                Intent QTRecordEnter = new Intent(QTHome.this, QTRecord.class);
-                startActivity(QTRecordEnter);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+//        if(v.getId() == R.id.btnSecond){
+//            try {
+//                Intent QTRecordEnter = new Intent(QTHome.this, QTRecord.class);
+//                startActivity(QTRecordEnter);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
 
